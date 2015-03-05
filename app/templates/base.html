@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>{% if title %}{{title}} - Testing task{% else %}Testing task{% endif %}</title> 
+  </head>
+ <body>
+ <div class="container" >
+    <div class="nav">
+     {% if current_user.is_authenticated() %} Hi {{ current_user.login }}! {% endif %}
+     <a href="{{ url_for('index') }}"> Home </a> |
+     {% if not current_user.is_authenticated() %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a> | <a href="{{ url_for('question') }}">Ask the question</a>
+  {% endif %}
+    | <a href="{{ url_for('register') }}">Register</a>
+     </div>
+     <div class="content"> 
+      {% block content %}
+                
+      {% if questions %}
+          {% for quest in questions %}
+              {{ loop.index }}
+              <a href="/post/{{ quest.id }}"> - {{ quest.text }}</a>  &nbsp;&nbsp;&nbsp; ({{ quest.user_id }})<br>
+          {% endfor%}
+      {% else %}
+          <p>no single issue</p>
+      {% endif %}
+<br>{% endblock %}
+     </div>
+    </div>
+  </body>
+</html>

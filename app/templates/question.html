@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ask the question</h2>
+{% from "_formhelpers.html" import render_field %}
+<form action="" method="post" name="login">
+  <dl>
+    {{ form.hidden_tag() }} 
+    {{ render_field(form.question) }}
+    <input hidden type="text" value="{{ current_user.login }}" id="user_id" name="user_id" >
+ </dl>
+  <p><input type="submit" value="submit"></p>
+</form>
+{% endblock %}

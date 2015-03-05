@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Post</h1>
+
+  
+{% for i in post %}
+    <p>({{i.user_id}}) &nbsp;&nbsp;&nbsp; {{ i.text }}</p>
+{% endfor %}
+    
+
+{% if current_user.is_authenticated() %}
+    {% from "_formhelpers.html" import render_field %}
+      <form method=post action="/post/{{post_id}}">
+        <dl>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.answer) }}
+        
+        <input id="user_id" name="user_id" type="text" value="{{ current_user.login }}" hidden >
+        <input id="question_id" name="question_id" type="text" value="{{ post_id }}" hidden >
+       </dl>
+      <p><input type=submit value=submit>
+     </form>
+{% endif %}
+<h2>your answers</h2>
+{% for item in answer %}
+    {% if item.text_answer %} 
+        
+        <p>{{item.text_answer}} ({{item.user_id}})</p>
+        
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
