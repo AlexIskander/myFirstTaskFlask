@@ -91,7 +91,7 @@ def add_vote():
         vote = request.form['vote']
         u = db.session.query(Answer).get(vote)
         x = 0 if u.vote == None else u.vote 
-        u.vote = x + 1
+        u.vote += 1
         db.session.commit()
         return 'Thank you for voting'
     return  'not ok'

@@ -7,7 +7,7 @@
     <table width="100%" class="table">
     {% for i in post %}
       <tr>
-        <td width="75">{{i.user_id}}</td>
+        <td>{{i.user_id}}</td>
         <td>{{ i.text }}</td>
       </tr>  
     {% endfor %}

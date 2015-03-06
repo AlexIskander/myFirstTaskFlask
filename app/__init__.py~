@@ -5,6 +5,5 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 app.config.from_object('setup')
 db = SQLAlchemy(app)
-Bootstrap(app)
 
 from app import views

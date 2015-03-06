@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField, TextAreaField
+#from wtforms.widgets import TextArea
 from wtforms.validators import Required
 from app import db
 from app.models import User, Question, Answer
